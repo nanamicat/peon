@@ -5,46 +5,46 @@
         <div class="left">
           <div class="top">
             <a-upload
-                :before-upload="selectWord"
-                :show-upload-list="false"
-                list-type="picture-card"
-                name="avatar"
+              :before-upload="selectWord"
+              :show-upload-list="false"
+              list-type="picture-card"
+              name="avatar"
             >
               <div>
-                <a-icon :type="word ? 'check' : 'file-word'"/>
+                <a-icon :type="word ? 'check' : 'file-word'" />
                 <div class="ant-upload-text">Word 模板</div>
               </div>
             </a-upload>
 
             <a-upload
-                :before-upload="selectExcel"
-                :show-upload-list="false"
-                list-type="picture-card"
-                name="avatar"
+              :before-upload="selectExcel"
+              :show-upload-list="false"
+              list-type="picture-card"
+              name="avatar"
             >
               <div>
-                <a-icon :type="excel ? 'check' : 'bar-chart'"/>
+                <a-icon :type="excel ? 'check' : 'bar-chart'" />
                 <div class="ant-upload-text">Excel 数据表</div>
               </div>
             </a-upload>
           </div>
 
           <a-button
-              v-if="progress === null"
-              :disabled="!(word && excel)"
-              icon="download"
-              size="large"
-              style="width: 100%"
-              type="primary"
-              @click="handleUpload()"
+            v-if="progress === null"
+            :disabled="!(word && excel)"
+            icon="download"
+            size="large"
+            style="width: 100%"
+            type="primary"
+            @click="handleUpload()"
           >
             Go!
           </a-button>
-          <a-progress v-else :percent="Math.round(progress * 100)"/>
+          <a-progress v-else :percent="Math.round(progress * 100)" />
         </div>
         <vue-qrcode
-            :options="{ width: 152, margin: 0 }"
-            value="https://qr.alipay.com/fkx16235k24tcg2zfqluo16"
+          :options="{ width: 152, margin: 0 }"
+          value="https://qr.alipay.com/fkx16235k24tcg2zfqluo16"
         ></vue-qrcode>
       </div>
     </a-card>
@@ -89,16 +89,16 @@ export default class App extends Vue {
     });
     console.log(data);
     data = data.filter((d) =>
-        [
-          "轻度1",
-          "轻度2",
-          "轻度3",
-          "轻度4",
-          "中度1",
-          "中度2",
-          "中度3",
-          "中度4",
-        ].includes(d.模版)
+      [
+        "轻度1",
+        "轻度2",
+        "轻度3",
+        "轻度4",
+        "中度1",
+        "中度2",
+        "中度3",
+        "中度4",
+      ].includes(d.模版)
     );
 
     console.log(data);
@@ -120,7 +120,7 @@ export default class App extends Vue {
     }
 
     this.progress = 1;
-    const content = await zip.generateAsync({type: "blob"});
+    const content = await zip.generateAsync({ type: "blob" });
 
     saveAs(content, "report.zip");
 
